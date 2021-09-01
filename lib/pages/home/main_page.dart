@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shooe/pages/home/chat_page.dart';
+import 'package:shooe/pages/home/home_page.dart';
+import 'package:shooe/pages/home/profile_page.dart';
+import 'package:shooe/pages/home/wishlist_page.dart';
+import 'package:shooe/providers/page_provider.dart';
+import 'package:shooe/theme.dart';
+
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+
+  @override
+  Widget build(BuildContext context) {
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
+
+    Widget cartButton() {
+      return FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/cart');
+        },
+        child: Image.asset(
+          'assets/icon_cart.png',
+          width: 20,
+        ),
+        backgroundColor: secondaryColor,
+      );
+    }
+
+    Widget customBottomNav() {
+      return ClipRRect(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+        child: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          notchMargin: 12,
+          clipBehavior: Clip.antiAlias,
+          child: BottomNavigationBar(
+            backgroundColor: backgroundColor4,
+            currentIndex: pageProvider.currentIndex,
+            onTap: (value) {
+              pageProvider.currentIndex = value;
+            },
+            type: BottomNavigationBarType.fixed,
+            items: [
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(top: 20, bottom: 4),
+                  child: Image.asset(
+                    'assets/icon_home.png',
+                    width: 20,
+                    color: pageProvider.currentIndex == 0 ? primaryColor : inactiveBottomNavBarColor,
+                  ),
+                ),
+                label: ''
+              ),
+              BottomNavigationBarItem(icon: Container(margin: EdgeInsets.only(top: 20, bottom: 4), child: Image.asset('assets/icon_chat.png', width: 20, color: pageProvider.currentIndex == 1 ? primaryColor : inactiveBottomNavBarColor)), label: ''),
+              BottomNavigationBarItem(icon: Container(margin: EdgeInsets.only(top: 20, bottom: 4), child: Image.asset('assets/icon_wishlist.png', width: 20, color: pageProvider.currentIndex == 2 ? primaryColor : inactiveBottomNavBarColor)), label: ''),
+              BottomNavigationBarItem(icon: Container(margin: EdgeInsets.only(top: 20, bottom: 4), child: Image.asset('assets/icon_profile.png', width: 20, color: pageProvider.currentIndex == 3 ? primaryColor : inactiveBottomNavBarColor)), label: ''),
+            ]
+          ),
+        ),
+      );
+    }
+
+    Widget body() {
+      switch(pageProvider.currentIndex) {
+        case 0:
+          return HomePage();
+          break;
+        case 1:
+          return ChatPage();
+          break;
+        case 2:
+          return WishlistPage();
+          break;
+        case 3:
+          return ProfilePage();
+          break;
+        default:
+          return HomePage();
+      }
+    }
+
+    return Scaffold(
+      backgroundColor: pageProvider.currentIndex == 0 ? backgroundColor1 : backgroundColor3,
+      floatingActionButton: cartButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: customBottomNav(),
+      body: body(),
+    );
+  }
+}

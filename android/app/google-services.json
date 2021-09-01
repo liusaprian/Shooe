@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "25683859975",
+    "project_id": "shooe-65544",
+    "storage_bucket": "shooe-65544.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25683859975:android:e4a3b6759949f848d228a2",
+        "android_client_info": {
+          "package_name": "app.liusaprian.shooe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25683859975-ca690jsaucgar50jpo44p666tcjfdke5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCULjwwSiJZz68RkIOUv7BbOnRo4tigeZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25683859975-ca690jsaucgar50jpo44p666tcjfdke5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
